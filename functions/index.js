@@ -30,7 +30,7 @@ app.post('/addUser', async (req,res)=> {
   const user = req.body;
 
   admin.firestore().collection("user").add(user);
-  res.status(201).send();
+  res.status(201).send("User added successfully");
  
 });
 
@@ -51,13 +51,13 @@ app.put('/editUser/:id', async (req,res) => {
   await admin.firestore().collection('user').doc(req.params.id).update({
     ...body
    });
-   res.status(200).send();
+   res.status(200).send("Update user successlully");
 });
 
 //delete the user
 app.delete('/delete/:id', async (req, res) => {
-  await admin.firestore().collection('user').doc(req.params.id).delete;
-  res.status(200).send();
+ await admin.firestore().collection('user').doc(req.params.id).delete();
+  res.status(200).send("Delete the user successfully");
 });
 
 exports.user = functions.https.onRequest(app);
